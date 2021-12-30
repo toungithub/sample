@@ -1,0 +1,29 @@
+resource "aws_volume_attachment" "SBDEL2A001" {
+  device_name = var.sda-devicename
+  volume_id   = aws_ebs_volume.sda-volume.id
+  instance_id = aws_instance.SBDEL2A001.id
+}
+
+resource "aws_volume_attachment" "SBDEL2A001-1" {
+  device_name = var.sdk-devicename
+  volume_id   = aws_ebs_volume.sdh-volume.id
+  instance_id = aws_instance.SBDEL2D001.id
+}
+
+resource "aws_ebs_volume" "sdf-volume" {
+  availability_zone = var.Availability_zone2
+  size              = 80
+
+  tags = {
+    Name = "ebs-volume for SBDEL2A001"
+  }
+}
+
+resource "aws_ebs_volume" "sdi-volume" {
+  availability_zone = var.Availability_zone2
+  size              = 50
+  tags = {
+    Name = "ebs-volume for SBDEL2A001"
+  }
+}
+

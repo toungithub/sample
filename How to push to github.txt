@@ -1,0 +1,20 @@
+HOW TO PUSH TO A GIT REPOSITORY.
+
+1. git init     -- to initialized your directory/folder
+
+2. git config --global user.name "toungithub"       -- to sign into your github account
+
+ git config --global user.email adetoun010@gmail.com     -- to sign into your github account
+
+3. git status  -- to see the status of your files
+
+4. git add *  --- to register the files to git
+
+5. git commit -m "first commit" ------ to commit the files to git
+
+6. git branch -M main -- to create a branch (location) where your files will be safe.
+
+7. git remote add origin https://github.com/adekunle2000 -- to add your git repository. put your git repo in https.
+
+
+8. git push -u origin main  -- push your files to your github account

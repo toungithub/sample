@@ -1,0 +1,47 @@
+- sudo yum install stress -y
+- stress --cpu 1 --timeout 300
+aws sts get-caller-identity
+
+
+server-side_encryption
+
+
+resource "aws_kms_key" "del-kms" {
+  description             = "KMS key 1"
+  enable_key_rotation = true
+polciy = data.aws._iam_policy_document.key_policy.json
+}
+
+resource "aws_s3_bucket" "del-s3-bucket" {
+  bucket = var.del-bucket
+  acl    = "private"
+tags = {
+Name = "del-bucket"
+
+server_side_encryption_configuration {
+rule {
+apply_server_side_encryption_by_default {
+kms_maser_key_id = aws_kms_key.del-kms
+}
+}
+
+data "aws_caller_identity" "current"{}
+
+data "aws_iam_policy_document" "key_policy" {
+statement {
+sid = "allow root user permission"
+effect = "allow"
+principals {
+type = "AWS"
+identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"]
+}
+actions = ["kms:*"]
+resources = ["*"]
+}
+}
+
+varibale "del-bucket"
+type = string
+
+-- open a terraform.tfvars file
+bucket_name = "del-data-bucket"
